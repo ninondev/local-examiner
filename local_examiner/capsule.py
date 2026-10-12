@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """Revision records, canonical capsule bytes, content digests, and optional signing hooks."""
 from __future__ import annotations
 import hashlib

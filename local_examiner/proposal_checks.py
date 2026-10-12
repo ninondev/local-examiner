@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """Rule-based checks for English proposals. Findings include source character offsets.
 
 These heuristics do not award exam scores or decide writing quality."""

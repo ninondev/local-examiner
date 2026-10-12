@@ -150,7 +150,7 @@ the text. Its score window is a fixed range, not a measured confidence interval.
 
 ## License and contributions
 
-The code is under [MPL-2.0](LICENSE). Pull requests are welcome.
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [CLA.md](CLA.md) before contributing.
+The code is under [MIT](LICENSE). Pull requests are welcome.
+See [CONTRIBUTING.md](CONTRIBUTING.md) before contributing.
 
 If this was useful to you, a star helps other people find it.

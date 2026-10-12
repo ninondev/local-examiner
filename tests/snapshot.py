@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """Complete outputs for the synthetic demo, with fixed capsule metadata."""
 from local_examiner import canon_json, demo, examine, hexify_floats, narrate
 

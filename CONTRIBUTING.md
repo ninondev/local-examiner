@@ -20,6 +20,4 @@ nice -n 10 python3 -m pip wheel --no-deps --no-build-isolation --no-index .
 Use new synthetic texts in tests. Mark them synthetic. Keep rule IDs and
 output order stable. Rule changes need evidence and updated tests.
 
-Before merge, post the comment required by [CLA.md](CLA.md):
-
-> I have read the CLA and I agree to it.
+Contributions are accepted under the MIT License. See [LICENSE](LICENSE).

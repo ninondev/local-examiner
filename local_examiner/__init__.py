@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """Deterministic checks and revision memory for English proposals."""
 from .capsule import Capsule, capsule_from_revision
 from .local_examiner import ExaminerReport, examine, narrate

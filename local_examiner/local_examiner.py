@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """Retrieve prior revisions and link recurring rule gaps to evidence in the current proposal."""
 from __future__ import annotations
 from dataclasses import dataclass, field, asdict

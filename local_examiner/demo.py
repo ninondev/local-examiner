@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """New synthetic proposals and tasks. These are not published exam materials."""
 from .capsule import capsule_from_revision
 from .local_examiner import examine, narrate

@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """Standalone PC/CAP/LE regression tests. All task and proposal fixtures are new and synthetic."""
 from __future__ import annotations
 import json

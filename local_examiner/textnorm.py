@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """Canonical JSON and IEEE-754 binary64 conversion used for capsule digests."""
 from __future__ import annotations
 import json

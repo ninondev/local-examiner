@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Ninon
-# SPDX-License-Identifier: MPL-2.0
+# SPDX-License-Identifier: MIT
 """Byte-level regression checks with synthetic inputs, golden bytes, and fresh processes."""
 import os
 from pathlib import Path
