@@ -1,9 +1,8 @@
 # local-examiner
 
-
 A writing checker that remembers. When a learner repeats a mistake they fixed before, it puts the old fix next to the new sentence.
 
-It checks English proposal writing against explicit rules and quotes the exact sentence and character position for each gap. It needs no training, no LLM, no network and no runtime packages. The same input gives the same bytes on every run: in 16 fresh processes (four hash seeds, two locales), the full output matched one saved file exactly. The test suite passes 27 tests on Python 3.13 and 3.14.
+It checks English proposal writing against explicit rules and quotes the exact sentence and character position for each gap. It needs no training, no LLM, no network and no runtime packages. The same input gives the same bytes on every run; [Determinism](#determinism) says how that is tested.
 
 Limits: it covers the proposal genre only, in English only, and it gives no exam score. No one has measured its rule precision, recall or agreement with human raters yet.
 
@@ -122,14 +121,15 @@ An optional signer must also give stable output for identical input.
 Tests check fixed JSON and float bytes, capsule import and export, and
 retrieval order when scores tie. A full synthetic output file is checked
 against eight fresh processes per Python version. Hash seeds and locale
-settings change between those processes. All runs were on one Mac;
-other devices and Python 3.10 to 3.12 have not been tested.
+settings change between those processes. All 27 tests pass on Python 3.11,
+3.12, 3.13 and 3.14, all on one Mac. Other devices and Python 3.10 have not
+been tested.
 
 ```sh
-nice -n 10 python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -v
 ```
 
-If pytest is installed, use `nice -n 10 python3 -m pytest -q`.
+If pytest is installed, use `python3 -m pytest -q`.
 
 ## Limits
 
@@ -152,5 +152,3 @@ the text. Its score window is a fixed range, not a measured confidence interval.
 
 The code is under [MIT](LICENSE). Pull requests are welcome.
 See [CONTRIBUTING.md](CONTRIBUTING.md) before contributing.
-
-If this was useful to you, a star helps other people find it.
