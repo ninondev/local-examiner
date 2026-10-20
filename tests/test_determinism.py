@@ -1,6 +1,7 @@
 # Copyright (c) 2026 Ninon
 # SPDX-License-Identifier: MIT
 """Byte-level regression checks with synthetic inputs, golden bytes, and fresh processes."""
+
 import os
 from pathlib import Path
 import subprocess
@@ -18,8 +19,9 @@ GOLDEN = ROOT / "tests/fixtures/synthetic-output.json"
 
 class DeterminismTests(unittest.TestCase):
     def test_canonical_json_matches_literal_utf8_vector(self):
-        self.assertEqual(canon_json({"z": [True, None, 2], "a": "cafe"}),
-                         b'{"a":"cafe","z":[true,null,2]}')
+        self.assertEqual(
+            canon_json({"z": [True, None, 2], "a": "cafe"}), b'{"a":"cafe","z":[true,null,2]}'
+        )
         self.assertEqual(canon_json({"e": "\u00e9"}), b'{"e":"\xc3\xa9"}')
         with self.assertRaises(ValueError):
             canon_json({"nested": [1.0]})
@@ -34,7 +36,9 @@ class DeterminismTests(unittest.TestCase):
         cap.seal()
         back = Capsule.import_json(cap.export_json())
         self.assertTrue(back.verify_digest())
-        self.assertEqual(f64_hex(back.task_records[0].input_provenance["synthetic_float"]), "8000000000000000")
+        self.assertEqual(
+            f64_hex(back.task_records[0].input_provenance["synthetic_float"]), "8000000000000000"
+        )
         self.assertEqual(back.canonical_bytes(), cap.canonical_bytes())
 
     def test_complete_outputs_match_frozen_synthetic_bytes(self):
@@ -46,10 +50,21 @@ class DeterminismTests(unittest.TestCase):
         for seed in ("0", "1", "42", "random"):
             for locale in ("C", "en_US.UTF-8"):
                 with self.subTest(hash_seed=seed, locale=locale):
-                    env = dict(os.environ, PYTHONHASHSEED=seed, LC_ALL=locale,
-                               PYTHONDONTWRITEBYTECODE="1", PYTHONIOENCODING="utf-8")
-                    result = subprocess.run([sys.executable, "-B", "-c", code], cwd=ROOT,
-                                            env=env, capture_output=True, check=True, timeout=30)
+                    env = dict(
+                        os.environ,
+                        PYTHONHASHSEED=seed,
+                        LC_ALL=locale,
+                        PYTHONDONTWRITEBYTECODE="1",
+                        PYTHONIOENCODING="utf-8",
+                    )
+                    result = subprocess.run(
+                        [sys.executable, "-B", "-c", code],
+                        cwd=ROOT,
+                        env=env,
+                        capture_output=True,
+                        check=True,
+                        timeout=30,
+                    )
                     self.assertEqual(result.stdout, expected)
 
     def test_fixed_capsule_metadata_is_repeatable(self):
@@ -62,8 +77,11 @@ class DeterminismTests(unittest.TestCase):
 
     def test_retrieval_ties_use_timestamp_then_id(self):
         caps = [demo.make_demo_capsule() for _ in range(3)]
-        for cap, cid, date in zip(caps, ("z", "b", "a"),
-                                 ("2025-01-01T00:00:00+00:00", "2026-01-01T00:00:00+00:00", "2026-01-01T00:00:00+00:00")):
+        for cap, cid, date in zip(
+            caps,
+            ("z", "b", "a"),
+            ("2025-01-01T00:00:00+00:00", "2026-01-01T00:00:00+00:00", "2026-01-01T00:00:00+00:00"),
+        ):
             cap.capsule_id, cap.issued_at = cid, date
             cap.seal()
         options = dict(capability_id=demo.CAPABILITY, genre="proposal", reader_terms=["manager"])

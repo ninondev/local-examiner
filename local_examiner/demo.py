@@ -1,6 +1,7 @@
 # Copyright (c) 2026 Ninon
 # SPDX-License-Identifier: MIT
 """New synthetic proposals and tasks. These are not published exam materials."""
+
 from .capsule import capsule_from_revision
 from .local_examiner import examine, narrate
 
@@ -46,19 +47,36 @@ I hope you will consider these ideas."""
 
 def make_demo_capsule():
     return capsule_from_revision(
-        capability_id=CAPABILITY, task_id="hall-1", prompt_text=TASK_HALL,
-        before_text=BEFORE_HALL, after_text=AFTER_HALL, reader_terms=["the manager", "manager"],
-        issued_at="2026-01-01T00:00:00+00:00", capsule_id="synthetic-capsule-1", subject_key="synthetic-learner")
+        capability_id=CAPABILITY,
+        task_id="hall-1",
+        prompt_text=TASK_HALL,
+        before_text=BEFORE_HALL,
+        after_text=AFTER_HALL,
+        reader_terms=["the manager", "manager"],
+        issued_at="2026-01-01T00:00:00+00:00",
+        capsule_id="synthetic-capsule-1",
+        subject_key="synthetic-learner",
+    )
 
 
 def run_demo():
     cap = make_demo_capsule()
-    options = dict(task_text=TASK_WORKSHOP, capability_id=CAPABILITY, reader_terms=["events officer", "officer"])
-    return "\n".join([
-        "Synthetic proposal demo",
-        f"capsule_id={cap.capsule_id} digest={cap.content_digest} signature={cap.signature_algorithm}",
-        "PLAIN mode", narrate(examine(NEW_WORKSHOP, capsules=[], **options)), "",
-        "CAPSULE mode", narrate(examine(NEW_WORKSHOP, capsules=[cap], **options))])
+    options = dict(
+        task_text=TASK_WORKSHOP,
+        capability_id=CAPABILITY,
+        reader_terms=["events officer", "officer"],
+    )
+    return "\n".join(
+        [
+            "Synthetic proposal demo",
+            f"capsule_id={cap.capsule_id} digest={cap.content_digest} signature={cap.signature_algorithm}",
+            "PLAIN mode",
+            narrate(examine(NEW_WORKSHOP, capsules=[], **options)),
+            "",
+            "CAPSULE mode",
+            narrate(examine(NEW_WORKSHOP, capsules=[cap], **options)),
+        ]
+    )
 
 
 if __name__ == "__main__":

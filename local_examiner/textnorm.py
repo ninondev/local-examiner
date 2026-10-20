@@ -1,10 +1,12 @@
 # Copyright (c) 2026 Ninon
 # SPDX-License-Identifier: MIT
 """Canonical JSON and IEEE-754 binary64 conversion used for capsule digests."""
+
 from __future__ import annotations
 import json
 import struct
 from typing import Any
+
 
 def _reject_floats(obj: Any) -> None:
     if isinstance(obj, float):
@@ -17,17 +19,23 @@ def _reject_floats(obj: Any) -> None:
         for v in obj:
             _reject_floats(v)
 
+
 def canon_json(obj: Any) -> bytes:
     """Encode compact, key-sorted UTF-8 JSON. Raw floats are rejected."""
     _reject_floats(obj)
-    return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8')
+    return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode(
+        'utf-8'
+    )
+
 
 def f64_hex(x: float) -> str:
     """Encode an IEEE-754 binary64 float as big-endian lowercase hex."""
     return struct.pack('>d', x).hex()
 
+
 def f64_unhex(h: str) -> float:
     return struct.unpack('>d', bytes.fromhex(h))[0]
+
 
 def hexify_floats(obj: Any) -> Any:
     """Recursively replace floats with a {"~f64": hex} object."""
